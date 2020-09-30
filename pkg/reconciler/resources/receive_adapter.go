@@ -45,7 +45,7 @@ func MakeReceiveAdapter(args *ReceiveAdapterArgs) *v1.Deployment {
 	ret := &v1.Deployment{
 		ObjectMeta: metav1.ObjectMeta{
 			Namespace: args.Source.Namespace,
-			Name:      kmeta.ChildName(string(args.Source.UID), fmt.Sprintf("prometheussource-%s", args.Source.Name)),
+			Name:      kmeta.ChildName(fmt.Sprintf("prometheussource-%s", args.Source.Name), string(args.Source.UID)),
 			Labels:    args.Labels,
 			OwnerReferences: []metav1.OwnerReference{
 				*kmeta.NewControllerRef(args.Source),
