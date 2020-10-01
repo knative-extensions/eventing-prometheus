@@ -22,7 +22,6 @@ import (
 	v1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"knative.dev/eventing/pkg/utils"
 	"knative.dev/pkg/kmeta"
 
 	"knative.dev/eventing-prometheus/pkg/apis/sources/v1alpha1"
@@ -46,7 +45,7 @@ func MakeReceiveAdapter(args *ReceiveAdapterArgs) *v1.Deployment {
 	ret := &v1.Deployment{
 		ObjectMeta: metav1.ObjectMeta{
 			Namespace: args.Source.Namespace,
-			Name:      utils.GenerateFixedName(args.Source, fmt.Sprintf("prometheussource-%s", args.Source.Name)),
+			Name:      kmeta.ChildName(fmt.Sprintf("prometheussource-%s", args.Source.Name), string(args.Source.UID)),
 			Labels:    args.Labels,
 			OwnerReferences: []metav1.OwnerReference{
 				*kmeta.NewControllerRef(args.Source),

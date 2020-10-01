@@ -20,6 +20,8 @@ import (
 	"context"
 	"fmt"
 
+	"knative.dev/eventing/pkg/utils"
+
 	"k8s.io/client-go/kubernetes"
 	"knative.dev/eventing/pkg/reconciler/source"
 	"knative.dev/pkg/controller"
@@ -48,6 +50,7 @@ const (
 	// Name of the corev1.Events emitted from the reconciliation process
 	prometheussourceDeploymentCreated = "PrometheusSourceDeploymentCreated"
 	prometheussourceDeploymentUpdated = "PrometheusSourceDeploymentUpdated"
+	prometheussourceDeploymentDeleted = "PrometheusSourceDeploymentDeleted"
 )
 
 type envConfig struct {
@@ -136,6 +139,14 @@ func (r *Reconciler) createReceiveAdapter(ctx context.Context, src *v1alpha1.Pro
 
 	ra, err := r.kubeClientSet.AppsV1().Deployments(src.Namespace).Get(ctx, expected.Name, metav1.GetOptions{})
 	if apierrors.IsNotFound(err) {
+		// Issue eventing#2842: Adater deployment name uses kmeta.ChildName. If a deployment by the previous name pattern is found, it should
+		// be deleted. This might cause temporary downtime.
+		if deprecatedName := utils.GenerateFixedName(adapterArgs.Source, fmt.Sprintf("prometheussource-%s", adapterArgs.Source.Name)); deprecatedName != expected.Name {
+			if err := r.kubeClientSet.AppsV1().Deployments(src.Namespace).Delete(ctx, deprecatedName, metav1.DeleteOptions{}); err != nil && !apierrors.IsNotFound(err) {
+				return nil, fmt.Errorf("error deleting deprecated named deployment: %v", err)
+			}
+			controller.GetEventRecorder(ctx).Eventf(src, corev1.EventTypeNormal, prometheussourceDeploymentDeleted, "Deprecated deployment removed: \"%s/%s\"", src.Namespace, deprecatedName)
+		}
 		ra, err = r.kubeClientSet.AppsV1().Deployments(src.Namespace).Create(ctx, expected, metav1.CreateOptions{})
 		controller.GetEventRecorder(ctx).Eventf(src, corev1.EventTypeNormal, prometheussourceDeploymentCreated, "Deployment created, error: %v", err)
 		return ra, err
