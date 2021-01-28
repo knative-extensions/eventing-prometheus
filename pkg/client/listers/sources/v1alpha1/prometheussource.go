@@ -26,8 +26,10 @@ import (
 )
 
 // PrometheusSourceLister helps list PrometheusSources.
+// All objects returned here must be treated as read-only.
 type PrometheusSourceLister interface {
 	// List lists all PrometheusSources in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1alpha1.PrometheusSource, err error)
 	// PrometheusSources returns an object that can list and get PrometheusSources.
 	PrometheusSources(namespace string) PrometheusSourceNamespaceLister
@@ -58,10 +60,13 @@ func (s *prometheusSourceLister) PrometheusSources(namespace string) PrometheusS
 }
 
 // PrometheusSourceNamespaceLister helps list and get PrometheusSources.
+// All objects returned here must be treated as read-only.
 type PrometheusSourceNamespaceLister interface {
 	// List lists all PrometheusSources in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1alpha1.PrometheusSource, err error)
 	// Get retrieves the PrometheusSource from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1alpha1.PrometheusSource, error)
 	PrometheusSourceNamespaceListerExpansion
 }
