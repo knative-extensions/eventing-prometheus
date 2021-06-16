@@ -9,12 +9,12 @@ require (
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/robfig/cron v1.2.0
 	go.uber.org/zap v1.17.0
-	k8s.io/api v0.19.7
-	k8s.io/apimachinery v0.19.7
-	k8s.io/client-go v0.19.7
-	knative.dev/eventing v0.23.1-0.20210604160145-ab3978c3656d
-	knative.dev/hack v0.0.0-20210601210329-de04b70e00d0
-	knative.dev/pkg v0.0.0-20210602095030-0e61d6763dd6
+	k8s.io/api v0.20.7
+	k8s.io/apimachinery v0.20.7
+	k8s.io/client-go v0.20.7
+	knative.dev/eventing v0.23.1-0.20210615213121-4eb1738b5e35
+	knative.dev/hack v0.0.0-20210614141220-66ab1a098940
+	knative.dev/pkg v0.0.0-20210615143321-77ff8d962c73
 )
 
 replace (
