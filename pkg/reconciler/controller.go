@@ -24,7 +24,6 @@ import (
 	"knative.dev/eventing/pkg/reconciler/source"
 	"knative.dev/pkg/configmap"
 	"knative.dev/pkg/controller"
-	"knative.dev/pkg/logging"
 	"knative.dev/pkg/resolver"
 
 	prometheusinformer "knative.dev/eventing-prometheus/pkg/client/injection/informers/sources/v1alpha1/prometheussource"
@@ -54,13 +53,12 @@ func NewController(
 		configs:          source.WatchConfigurations(ctx, controllerAgentName, cmw),
 	}
 	impl := promreconciler.NewImpl(ctx, r)
-	r.sinkResolver = resolver.NewURIResolver(ctx, impl.EnqueueKey)
+	r.sinkResolver = resolver.NewURIResolverFromTracker(ctx, impl.Tracker)
 
-	logging.FromContext(ctx).Info("Setting up event handlers")
 	prometheusSourceInformer.Informer().AddEventHandler(controller.HandleAll(impl.Enqueue))
 
 	deploymentInformer.Informer().AddEventHandler(cache.FilteringResourceEventHandler{
-		FilterFunc: controller.FilterControllerGK(v1alpha1.Kind("PrometheusSource")),
+		FilterFunc: controller.FilterController(&v1alpha1.PrometheusSource{}),
 		Handler:    controller.HandleAll(impl.EnqueueControllerOf),
 	})
 
