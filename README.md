@@ -6,6 +6,10 @@
 [![LICENSE](https://img.shields.io/github/license/knative/eventing-contrib.svg)](https://github.com/knative-sandbox/eventing-prometheus/blob/master/LICENSE)
 [![Slack Status](https://img.shields.io/badge/slack-join_chat-white.svg?logo=slack&style=social)](https://knative.slack.com)
 
+## Deprecated
+
+**NOTE:** Due to lack of active development the *Knative Eventing Prometheus* is now deprecated.
+
 The Knative Eventing Prometheus Event Source enables Knative Eventing
 integration with the [Prometheus Monitoring System](https://prometheus.io/).
 
