@@ -19,6 +19,8 @@ contrib.go.opencensus.io/exporter/zipkin
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
 github.com/PuerkitoBio/urlesc
+# github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20211221011931-643d94fcab96
+github.com/antlr/antlr4/runtime/Go/antlr
 # github.com/beorn7/perks v1.0.1
 github.com/beorn7/perks/quantile
 # github.com/blang/semver/v4 v4.0.0
@@ -37,7 +39,15 @@ github.com/cespare/xxhash/v2
 # github.com/cloudevents/sdk-go/observability/opencensus/v2 v2.4.1
 github.com/cloudevents/sdk-go/observability/opencensus/v2/client
 github.com/cloudevents/sdk-go/observability/opencensus/v2/http
-# github.com/cloudevents/sdk-go/v2 v2.7.0
+# github.com/cloudevents/sdk-go/sql/v2 v2.8.0
+github.com/cloudevents/sdk-go/sql/v2
+github.com/cloudevents/sdk-go/sql/v2/expression
+github.com/cloudevents/sdk-go/sql/v2/function
+github.com/cloudevents/sdk-go/sql/v2/gen
+github.com/cloudevents/sdk-go/sql/v2/parser
+github.com/cloudevents/sdk-go/sql/v2/runtime
+github.com/cloudevents/sdk-go/sql/v2/utils
+# github.com/cloudevents/sdk-go/v2 v2.8.0
 ## explicit
 github.com/cloudevents/sdk-go/v2
 github.com/cloudevents/sdk-go/v2/binding
@@ -126,7 +136,7 @@ github.com/go-kit/log
 github.com/go-kit/log/level
 # github.com/go-logfmt/logfmt v0.5.0
 github.com/go-logfmt/logfmt
-# github.com/go-logr/logr v0.4.0
+# github.com/go-logr/logr v1.2.2
 github.com/go-logr/logr
 # github.com/go-openapi/jsonpointer v0.19.5
 github.com/go-openapi/jsonpointer
@@ -927,9 +937,7 @@ k8s.io/gengo/generator
 k8s.io/gengo/namer
 k8s.io/gengo/parser
 k8s.io/gengo/types
-# k8s.io/klog v1.0.0
-k8s.io/klog
-# k8s.io/klog/v2 v2.9.0
+# k8s.io/klog/v2 v2.40.1
 k8s.io/klog/v2
 # k8s.io/kube-openapi v0.0.0-20211109043538-20434351676c
 k8s.io/kube-openapi/cmd/openapi-gen/args
@@ -939,12 +947,12 @@ k8s.io/kube-openapi/pkg/generators/rules
 k8s.io/kube-openapi/pkg/util/proto
 k8s.io/kube-openapi/pkg/util/sets
 k8s.io/kube-openapi/pkg/validation/spec
-# k8s.io/utils v0.0.0-20210819203725-bdf08cb9a70a
+# k8s.io/utils v0.0.0-20211208161948-7d6a63dca704
 k8s.io/utils/buffer
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/eventing v0.28.1-0.20220105073332-4348c292392a
+# knative.dev/eventing v0.28.1-0.20220118155632-76366bce7449
 ## explicit
 knative.dev/eventing/pkg/adapter/v2
 knative.dev/eventing/pkg/adapter/v2/test
@@ -978,6 +986,8 @@ knative.dev/eventing/pkg/duck
 knative.dev/eventing/pkg/kncloudevents
 knative.dev/eventing/pkg/metrics
 knative.dev/eventing/pkg/metrics/source
+knative.dev/eventing/pkg/observability
+knative.dev/eventing/pkg/observability/client
 knative.dev/eventing/pkg/reconciler/source
 knative.dev/eventing/pkg/utils
 knative.dev/eventing/test/lib
@@ -1004,10 +1014,10 @@ knative.dev/eventing/test/test_images/heartbeats
 knative.dev/eventing/test/test_images/performance
 knative.dev/eventing/test/test_images/print
 knative.dev/eventing/test/test_images/recordevents
-# knative.dev/hack v0.0.0-20211222071919-abd085fc43de
+# knative.dev/hack v0.0.0-20220118141833-9b2ed8471e30
 ## explicit
 knative.dev/hack
-# knative.dev/pkg v0.0.0-20220104185830-52e42b760b54
+# knative.dev/pkg v0.0.0-20220118160532-77555ea48cd4
 ## explicit
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
